@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        h3 {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: center; /* Center text horizontally */
+        }
+        .features-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .features-table th, .features-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .features-table th {
+            background-color: #f4f4f4;
+        }
+        .features-table td {
+            background-color: #fafafa;
+        }
+        .features-table tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+        .features-table tr:hover td {
+            background-color: #f1f1f1;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Here is the Prediction</h1>
+        <h3>The predicted fare amount is: {{ prediction.0 }} LE</h3>
+        
+        <h3>The data you entered:</h3>
+        <table class="features-table">
+            <tr>
+                <th>Feature</th>
+                <th>Value</th>
+            </tr>
+            {% for feature, value in features.items %}
+            <tr>
+                <td>{{ feature }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <a href="{% url 'home' %}" class="button">Go to Home</a>
+    </div>
+</body>
+</html>
