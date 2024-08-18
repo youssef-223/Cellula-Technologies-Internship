@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Reservation Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items at the top */
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            margin: 20px; /* Add margin to ensure it doesn't touch the edges */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const today = new Date().toISOString().split('T')[0];
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+            
+            if (startDate < today || endDate < today) {
+                document.getElementById('error_message').innerText = "Dates cannot be before today.";
+                return false;
+            }
+
+            if (endDate <= startDate) {
+                document.getElementById('error_message').innerText = "End date must be after the start date.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hotel Reservation Predictor</h1>
+        <form method="POST" onsubmit="return validateForm()">
+            <label for="num_adults">Number of Adults:</label>
+            <input type="number" id="num_adults" name="num_adults" required>
+
+            <label for="num_children">Number of Children:</label>
+            <input type="number" id="num_children" name="num_children" required>
+
+            <label for="car_parking_space">Car Parking Space:</label>
+            <input type="number" id="car_parking_space" name="car_parking_space" required>
+
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+
+            <label for="avg_price">Average Price:</label>
+            <input type="number" step="0.01" id="avg_price" name="avg_price" required>
+
+            <label for="special_requests">Special Requests (Integer):</label>
+            <input type="number" id="special_requests" name="special_requests" required>
+
+            <label for="meal_plan">Meal Plan:</label>
+            <select id="meal_plan" name="meal_plan" required>
+                <option value="Meal Plan 1">Meal Plan 1</option>
+                <option value="Meal Plan 2">Meal Plan 2</option>
+                <option value="Not Selected">Not Selected</option>
+            </select>
+
+            <label for="room_type">Room Type:</label>
+            <select id="room_type" name="room_type" required>
+                <option value="Room Type 1">Room Type 1</option>
+                <option value="Room Type 2">Room Type 2</option>
+                <option value="Room Type 3">Room Type 3</option>
+                <option value="Room Type 4">Room Type 4</option>
+                <option value="Room Type 5">Room Type 5</option>
+                <option value="Room Type 6">Room Type 6</option>
+                <option value="Room Type 7">Room Type 7</option>
+            </select>
+
+            <label for="market_segment">Market Segment:</label>
+            <select id="market_segment" name="market_segment" required>
+                <option value="Complementary">Complementary</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Offline">Offline</option>
+                <option value="Online">Online</option>
+            </select>
+
+            <label for="prob_of_cancellation">Probability of Cancellation:</label>
+            <select id="prob_of_cancellation" name="prob_of_cancellation" required>
+                <option value="0">Not Likely</option>
+                <option value="1">Maybe</option>
+                <option value="2">Likely</option>
+                <option value="3">Very Likely</option>
+                <option value="4">Definitely</option>
+            </select>
+
+
+            <input type="submit" value="Submit">
+            <div class="error" id="error_message"></div>
+        </form>
+    </div>
+</body>
+</html>
