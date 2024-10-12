@@ -34,7 +34,7 @@ This project utilizes machine learning techniques to predict potential malware t
 1. Start the Flask application:
 
    ```bash
-   python app.py
+   python manage.py runserver
    ```
 2. Use Postman or any other API client to interact with the endpoints:
-   . Endpoint for predictions: `http://localhost:5000/predict`
+   . Endpoint for predictions: `http://localhost:8000/`
